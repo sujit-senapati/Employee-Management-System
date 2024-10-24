@@ -1,3 +1,4 @@
+localStorage.clear();
 
 
 const employees = [
@@ -5,6 +6,13 @@ const employees = [
         "id": 1,
         "email": "employee1@example.com",
         "password": "123",
+        "firstName": "Amit",
+        "taskNumber": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 0
+        },
         "tasks": [
             {
                 "active": true,
@@ -42,6 +50,13 @@ const employees = [
         "id": 2,
         "email": "employee2@example.com",
         "password": "123",
+        "firstName": "Rajesh",
+        "taskNumber": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 1
+        },
         "tasks": [
             {
                 "active": true,
@@ -89,6 +104,13 @@ const employees = [
         "id": 3,
         "email": "employee3@example.com",
         "password": "123",
+        "firstName": "Vikram",
+        "taskNumber": {
+            "active": 2,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 0
+        },
         "tasks": [
             {
                 "active": true,
@@ -126,6 +148,13 @@ const employees = [
         "id": 4,
         "email": "employee4@example.com",
         "password": "123",
+        "firstName": "Anjali",
+        "taskNumber": {
+            "active": 1,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 0
+        },
         "tasks": [
             {
                 "active": true,
@@ -163,6 +192,13 @@ const employees = [
         "id": 5,
         "email": "employee5@example.com",
         "password": "123",
+        "firstName": "Priya",
+        "taskNumber": {
+            "active": 3,
+            "newTask": 1,
+            "completed": 1,
+            "failed": 0
+        },
         "tasks": [
             {
                 "active": true,
@@ -211,8 +247,10 @@ const employees = [
 const admin = {
     "id": 1,
     "email": "admin@example.com",
-    "password": "123"
+    "password": "123",
+    "firstName": "Rohit"
 }
+
 
 
 
@@ -227,5 +265,5 @@ export const getLocalStorage = () => {
     const employees = JSON.parse(localStorage.getItem('employees')); //parse data back to normal array format from strings
     const admin = JSON.parse(localStorage.getItem('admin'));
 
-    return {employees, admin}
+    return { employees, admin }
 }
