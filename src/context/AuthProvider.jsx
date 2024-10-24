@@ -15,7 +15,8 @@ const AuthProvider = ({ children }) => {
 
     return (
         <div>
-            <AuthContext.Provider value={userData}>
+            {/* passing userData with useEffect to it's children(App.jsx) */}
+            <AuthContext.Provider value={userData}> 
                 {children}
             </AuthContext.Provider>
         </div>
