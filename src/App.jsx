@@ -12,14 +12,15 @@ const App = () => {
 
   const authData = useContext(AuthContext); //this data is brought from AuthProvider.jsx
 
-  useEffect(() => {  //check if authData is available then set current user to loggedInUser
-    if (authData) {
-      const loggedInUser = localStorage.getItem("loggedInUser");
-      if (loggedInUser) {
-        setUser(loggedInUser.role);
-      }
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+
+    if(loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData.role);
+      setLoggedInUserData(userData.data);
     }
-  }, [authData])
+  }, [])
 
 
   const handleLogin = (email, password) => {
@@ -27,11 +28,11 @@ const App = () => {
       setUser('admin');
       localStorage.setItem("loggedInUser", JSON.stringify({ role: 'admin' }));
     } else if (authData) {
-      const employee = authData.employees.find((e) => email == e.email && password == e.password);
-      if (employee) {
-        setUser('employee');
-        setLoggedInUserData(employee);
-        localStorage.setItem("loggedInUser", JSON.stringify({ role: 'employee' }));
+      const currentEmployee = authData.employees.find((e) => email == e.email && password == e.password);
+      if (currentEmployee) { //if there's data inside currentEmployee set current user to employee and 
+        setUser('employee'); //set loggedInUser in local storage with below properties
+        setLoggedInUserData(currentEmployee);
+        localStorage.setItem("loggedInUser", JSON.stringify({ role: 'employee', data: currentEmployee}));
       }
     } else {
       alert("Invalid Credentials");
